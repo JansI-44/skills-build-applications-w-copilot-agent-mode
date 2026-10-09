@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchJson, normalizeRecords } from '../lib/api.js'
+import { fetchJson as fetch, normalizeRecords } from '../lib/api.js'
 
 function formatDate(value) {
   if (!value) {
@@ -16,7 +16,7 @@ export default function Activities() {
   useEffect(() => {
     let cancelled = false
 
-    fetchJson('/api/activities/')
+    fetch('/api/activities/')
       .then((payload) => {
         if (!cancelled) {
           setActivities(normalizeRecords(payload))

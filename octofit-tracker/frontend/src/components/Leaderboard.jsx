@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchJson, normalizeRecords } from '../lib/api.js'
+import { fetchJson as fetch, normalizeRecords } from '../lib/api.js'
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([])
@@ -8,7 +8,7 @@ export default function Leaderboard() {
   useEffect(() => {
     let cancelled = false
 
-    fetchJson('/api/leaderboard/')
+    fetch('/api/leaderboard/')
       .then((payload) => {
         if (!cancelled) {
           setLeaderboard(normalizeRecords(payload))

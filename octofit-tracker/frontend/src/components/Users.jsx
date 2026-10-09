@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchJson, normalizeRecords } from '../lib/api.js'
+import { fetchJson as fetch, normalizeRecords } from '../lib/api.js'
 
 function formatTeam(team) {
   if (!team) {
@@ -24,7 +24,7 @@ export default function Users() {
   useEffect(() => {
     let cancelled = false
 
-    fetchJson('/api/users/')
+    fetch('/api/users/')
       .then((payload) => {
         if (!cancelled) {
           setUsers(normalizeRecords(payload))

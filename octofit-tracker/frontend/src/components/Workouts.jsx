@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchJson, normalizeRecords } from '../lib/api.js'
+import { fetchJson as fetch, normalizeRecords } from '../lib/api.js'
 
 export default function Workouts() {
   const [workouts, setWorkouts] = useState([])
@@ -8,7 +8,7 @@ export default function Workouts() {
   useEffect(() => {
     let cancelled = false
 
-    fetchJson('/api/workouts/')
+    fetch('/api/workouts/')
       .then((payload) => {
         if (!cancelled) {
           setWorkouts(normalizeRecords(payload))

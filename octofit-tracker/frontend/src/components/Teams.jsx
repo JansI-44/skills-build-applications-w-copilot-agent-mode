@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fetchJson, normalizeRecords } from '../lib/api.js'
+import { fetchJson as fetch, normalizeRecords } from '../lib/api.js'
 
 function getMemberNames(members) {
   if (!Array.isArray(members)) {
@@ -29,7 +29,7 @@ export default function Teams() {
   useEffect(() => {
     let cancelled = false
 
-    fetchJson('/api/teams/')
+    fetch('/api/teams/')
       .then((payload) => {
         if (!cancelled) {
           setTeams(normalizeRecords(payload))
